@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+    <html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>탈출 게임 힌트 타이머</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Background watermark -->
+        <div class="watermark">16</div>
+        
+        <!-- Top section -->
+        <header class="top-section">
+            <div class="app-title">서향</div>
+            <div class="escape-room-title">방탈출</div>
+        </header>
+        
+        <!-- Main timer section -->
+        <main class="timer-section">
+            <div class="timer-container">
+                <svg class="timer-ring" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="#8B0000" stroke-width="2" 
+                            class="progress-ring" style="stroke-dasharray: 283 283; stroke-dashoffset: 0;"/>
+                </svg>
+                <div class="timer-display">
+                    <div class="time-text">90:00</div>
+                    <div class="hint-label">힌트</div>
+                    <div class="hint-counter">0/999</div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Bottom section -->
+        <section class="bottom-section">
+            <h2 class="hint-code-title">힌트 코드</h2>
+            <div class="code-input-container">
+                <div class="code-box"></div>
+                <div class="code-box"></div>
+                <div class="code-box"></div>
+                <div class="code-box"></div>
+            </div>
+            <div class="keypad">
+                <button class="key" data-number="1">1</button>
+                <button class="key" data-number="2">2</button>
+                <button class="key" data-number="3">3</button>
+                <button class="key" data-number="4">4</button>
+                <button class="key" data-number="5">5</button>
+                <button class="key" data-number="6">6</button>
+                <button class="key" data-number="7">7</button>
+                <button class="key" data-number="8">8</button>
+                <button class="key" data-number="9">9</button>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Hint Popup Overlay -->
+    <div class="popup-overlay" id="popup-overlay">
+        <div class="popup-content">
+            <div class="popup-hint" id="popup-hint">Hint#1</div>
+            <div class="popup-subtitle">아무 곳이나 탭하여 계속</div>
+        </div>
+    </div>
+    
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="admin-panel">
+        <div class="admin-content">
+            <h3 class="admin-title">관리자 제어</h3>
+            <div class="admin-password-section" id="admin-password-section">
+                <input type="password" id="admin-password-input" placeholder="비밀번호 입력" autocomplete="off">
+                <button class="admin-button" id="submit-password-btn">제출</button>
+            </div>
+            <div class="admin-controls-section" id="admin-controls-section" style="display: none;">
+                <div class="admin-timer-status">
+                    <span class="status-label">타이머 상태:</span>
+                    <span class="status-value" id="timer-status">중지됨</span>
+                </div>
+                <button class="admin-button" id="start-timer-btn">타이머 시작</button>
+                <button class="admin-button" id="stop-timer-btn">타이머 중지</button>
+                <button class="admin-button" id="reset-timer-btn">타이머 리셋</button>
+                <div class="admin-instructions">
+                    <p>서향을 세 번 탭하여 이 패널 닫기</p>
+                    <p><em>타이머 시작은 패널이 닫힐 때 실행됩니다</em></p>
+                    <p><em>중지/리셋은 즉시 실행됩니다</em></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Hint Codes Configuration -->
+    <script type="application/json" id="hint-codes-config">
+    {
+        "codes": {
+            "3278": 1,
+            "2343": 2,
+            "9754": 3,
+            "6521": 4,
+            "2837": 5,
+            "7384": 6,
+            "3356": 7,
+            "1937": 8,
+            "4512": 9,
+            "2223": 10
+        },
+        "hints": {
+            "1": "Your first hint text here",
+            "2": "Your second hint text here",
+            "3": "Your third hint text here",
+            "4": "Your fourth hint text here",
+            "5": "Your fifth hint text here",
+            "6": "Your sixth hint text here",
+            "7": "Your seventh hint text here",
+            "8": "Your eighth hint text here",
+            "9": "Your ninth hint text here",
+            "10": "뒤를 돌아봐..."
+        }
+    }
+    </script>
+    
+    <script src="script.js"></script>
+</body>
+</html>
