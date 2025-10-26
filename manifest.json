@@ -1,0 +1,12 @@
+{
+  "name": "탈출 게임 힌트 타이머",
+  "short_name": "서향 힌트",
+  "description": "Escape room hint timer app",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait",
+  "icons": []
+}
+
