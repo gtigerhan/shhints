@@ -78,6 +78,7 @@ body {
     align-items: center;
     position: relative;
     z-index: 1;
+    margin-top: -40px;
 }
 
 .timer-container {
