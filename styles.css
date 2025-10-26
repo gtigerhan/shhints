@@ -12,6 +12,7 @@ body {
     height: 100vh;
     overflow: hidden;
     position: relative;
+    touch-action: manipulation; /* Prevent double-tap zoom */
 }
 
 /* App container */
@@ -339,8 +340,7 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 24px;
-    font-weight: 600;
-    color: white;
+    touch-action: manipulation; /* Prevent double-tap zoom on inputs */
 }
 
 .code-box.filled {
@@ -375,6 +375,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    touch-action: manipulation; /* Prevent double-tap zoom */
 }
 
 .key:hover {
