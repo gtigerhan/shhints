@@ -132,7 +132,7 @@ body {
     z-index: 1;
     position: relative;
     text-align: center;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .hint-code-title {
@@ -357,18 +357,18 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
-    max-width: 240px;
+    max-width: 300px;
     margin: 0 auto 20px auto;
 }
 
 .key {
-    width: 70px;
-    height: 70px;
+    width: 90px;
+    height: 90px;
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
     color: white;
-    font-size: 20px;
+    font-size: 32px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
