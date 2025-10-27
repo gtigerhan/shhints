@@ -11,7 +11,8 @@ body {
     color: white;
     height: 100vh;
     overflow: hidden;
-    position: relative;
+    position: fixed;
+    width: 100%;
     touch-action: manipulation; /* Prevent double-tap zoom */
 }
 
@@ -180,12 +181,12 @@ body {
     text-align: center;
     max-width: 300px;
     width: 90%;
-    transform: scale(0.8);
+    transform: scale(0.8) translateY(-30px);
     transition: transform 0.3s ease;
 }
 
 .popup-overlay.show .popup-content {
-    transform: scale(1);
+    transform: scale(1) translateY(-30px);
 }
 
 .popup-hint {
