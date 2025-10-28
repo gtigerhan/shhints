@@ -181,12 +181,12 @@ body {
     text-align: center;
     max-width: 300px;
     width: 90%;
-    transform: scale(0.8) translateY(-30px);
+    transform: scale(0.8);
     transition: transform 0.3s ease;
 }
 
 .popup-overlay.show .popup-content {
-    transform: scale(1) translateY(-30px);
+    transform: scale(1);
 }
 
 .popup-hint {
