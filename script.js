@@ -68,6 +68,7 @@ class EscapeRoomTimer {
         this.currentTimeDisplay = document.querySelector('.current-time');
         this.popupOverlay = document.getElementById('popup-overlay');
         this.popupHint = document.getElementById('popup-hint');
+        this.popupCloseButton = document.getElementById('popup-close-button');
         this.adminPanel = document.getElementById('admin-panel');
         this.timerStatus = document.getElementById('timer-status');
         this.startTimerBtn = document.getElementById('start-timer-btn');
@@ -96,16 +97,20 @@ class EscapeRoomTimer {
             this.updateCurrentTime();
         }, 60000);
         
-        // Close popup when tapping anywhere
-        this.popupOverlay.addEventListener('click', () => {
-            this.hideHint();
-        });
-        
-        // Also handle touch events for better mobile support
-        this.popupOverlay.addEventListener('touchend', (e) => {
-            e.preventDefault();
-            this.hideHint();
-        });
+        // Close popup when clicking the close button
+        if (this.popupCloseButton) {
+            this.popupCloseButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.hideHint();
+            });
+            
+            // Also handle touch events for better mobile support
+            this.popupCloseButton.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.hideHint();
+            });
+        }
         
         // Triple tap on app title to show admin panel (only when admin panel is hidden)
         this.appTitle.addEventListener('click', (e) => {
@@ -173,7 +178,10 @@ class EscapeRoomTimer {
         
         document.addEventListener('keydown', (e) => {
             if (this.popupOverlay.classList.contains('show')) {
-                this.hideHint();
+                // Allow Escape key to close the popup
+                if (e.key === 'Escape') {
+                    this.hideHint();
+                }
             } else if (e.key >= '1' && e.key <= '9') {
                 const keyButton = document.querySelector(`[data-number="${e.key}"]`);
                 if (keyButton) {

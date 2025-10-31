@@ -198,9 +198,27 @@ body {
     letter-spacing: 1px;
 }
 
-.popup-subtitle {
-    font-size: 20px;
-    color: rgba(255, 255, 255, 0.5);
+.popup-close-button {
+    margin-top: 30px;
+    padding: 16px 48px;
+    background: transparent;
+    border: 2px solid #8B0000;
+    border-radius: 12px;
+    color: white;
+    font-size: 24px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.popup-close-button:hover {
+    background: #8B0000;
+    color: white;
+}
+
+.popup-close-button:active {
+    transform: scale(0.95);
 }
 
 /* Admin Panel Styles */
