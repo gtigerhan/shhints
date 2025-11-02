@@ -15,7 +15,7 @@ class EscapeRoomTimer {
                 
                 console.log('Loaded hint codes:', codes);
                 
-                // Store hints mapping
+                // Store hints mapping (both Korean and English)
                 this.hints = config.hints || {};
                 
                 return codes;
@@ -50,6 +50,9 @@ class EscapeRoomTimer {
         // Load hint codes from HTML configuration
         this.hintCodes = this.loadHintCodes();
         
+        // Language preference (default: Korean)
+        this.language = localStorage.getItem('hintLanguage') || 'ko';
+        
         this.initializeElements();
         this.setupEventListeners();
         this.updateCurrentTime();
@@ -69,6 +72,7 @@ class EscapeRoomTimer {
         this.popupOverlay = document.getElementById('popup-overlay');
         this.popupHint = document.getElementById('popup-hint');
         this.popupCloseButton = document.getElementById('popup-close-button');
+        this.languageToggle = document.getElementById('language-toggle');
         this.adminPanel = document.getElementById('admin-panel');
         this.timerStatus = document.getElementById('timer-status');
         this.startTimerBtn = document.getElementById('start-timer-btn');
@@ -109,6 +113,19 @@ class EscapeRoomTimer {
                 e.preventDefault();
                 e.stopPropagation();
                 this.hideHint();
+            });
+        }
+        
+        // Language toggle button
+        if (this.languageToggle) {
+            this.updateLanguageButton();
+            this.languageToggle.addEventListener('click', () => {
+                this.toggleLanguage();
+            });
+            
+            this.languageToggle.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                this.toggleLanguage();
             });
         }
         
@@ -513,8 +530,8 @@ class EscapeRoomTimer {
         const hintNumber = this.hintCodes.get(this.currentCode);
         
         if (hintNumber) {
-            // Valid code - show the corresponding hint
-            const hintText = this.hints[hintNumber] || `P${hintNumber}`;
+            // Valid code - show the corresponding hint in the selected language
+            const hintText = this.getHintText(hintNumber);
             this.showHint(hintText);
             // Increment hint usage counter
             this.hintUsageCount++;
@@ -568,10 +585,37 @@ class EscapeRoomTimer {
         }
     }
     
+    getHintText(hintNumber) {
+        // Get hint text in the selected language
+        if (this.hints[this.language] && this.hints[this.language][hintNumber]) {
+            return this.hints[this.language][hintNumber];
+        }
+        // Fallback to Korean if English not available
+        if (this.hints.ko && this.hints.ko[hintNumber]) {
+            return this.hints.ko[hintNumber];
+        }
+        // Final fallback
+        return `Hint #${hintNumber}`;
+    }
+    
+    toggleLanguage() {
+        // Toggle between Korean and English
+        this.language = this.language === 'ko' ? 'en' : 'ko';
+        localStorage.setItem('hintLanguage', this.language);
+        this.updateLanguageButton();
+    }
+    
+    updateLanguageButton() {
+        if (this.languageToggle) {
+            this.languageToggle.textContent = this.language === 'ko' ? 'EN' : '한';
+        }
+    }
+    
     showTimeOverPopup() {
-        // Show time over message
+        // Show time over message in selected language
         if (this.popupHint) {
-            this.popupHint.textContent = '시간 종료!';
+            const timeOverMessage = this.language === 'ko' ? '시간 종료!' : 'Time Over!';
+            this.popupHint.textContent = timeOverMessage;
             this.popupOverlay.classList.add('show');
         }
     }
